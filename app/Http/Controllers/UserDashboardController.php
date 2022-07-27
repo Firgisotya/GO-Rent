@@ -55,7 +55,7 @@ class UserDashboardController extends Controller
         ]);
 
         if ($request->file('image')) {
-            $validatedData['image'] = $request->file('image')->store('profile', 'public');
+            $validateData['image'] = cloudinary()->upload($request->file('image')->getRealPath())->getSecurePath();
         }
         $validatedData['password'] = bcrypt($validatedData['password']);
 

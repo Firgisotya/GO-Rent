@@ -79,7 +79,7 @@ class KendaraanController extends Controller
 
         $validatedata['slug'] = Str::slug($validatedata['nama']);
         if ($request->file('image')) {
-            $validatedata['image'] = $request->file('image')->store('kendaraan', 'public');
+            $validatedata['image'] = cloudinary()->upload($request->file('image')->getRealPath())->getSecurePath();
         }
         Kendaraan::create($validatedata);
 

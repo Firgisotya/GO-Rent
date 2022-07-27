@@ -139,7 +139,7 @@ class OrderDetailController extends Controller
             $validateData['berkas'] = $request->file('berkas')->store('berkas', 'public');
         }
         if ($request->file('bukti_pembayaran')) {
-            $validateData['bukti_pembayaran'] = $request->file('bukti_pembayaran')->store('bukti_pembayaran', 'public');
+            $validateData['bukti_pembayaran'] = cloudinary()->upload($request->file('bukti_pembayaran')->getRealPath())->getSecurePath();
         }
         $order->status = 1;
         // dd($validateData);

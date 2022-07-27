@@ -49,7 +49,7 @@ class BankController extends Controller
         ]);
         $validatedata['slug'] = Str::slug($validatedata['name']);
         if ($request->file('image')) {
-            $validatedata['image'] = $request->file('image')->store('bank', 'public');
+            $validatedata['image'] = cloudinary()->upload($request->file('image')->getRealPath())->getSecurePath();
         }
         Bank::create($validatedata);
 
