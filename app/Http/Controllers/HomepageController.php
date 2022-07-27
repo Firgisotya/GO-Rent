@@ -18,6 +18,7 @@ use Illuminate\Http\Request;
 use App\Models\PengembalianDetail;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Controllers\CloudinaryStorage;
 
 class HomepageController extends Controller
 {

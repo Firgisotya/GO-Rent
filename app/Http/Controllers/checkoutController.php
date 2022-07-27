@@ -10,6 +10,7 @@ use App\Http\Requests\StoreOrderDetailRequest;
 use App\Models\Bank;
 use App\Models\Kendaraan;
 use App\Models\OrderDetail;
+use App\Http\Controllers\CloudinaryStorage;
 
 class checkoutController extends Controller
 {

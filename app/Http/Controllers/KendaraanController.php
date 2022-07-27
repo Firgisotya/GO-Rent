@@ -10,6 +10,7 @@ use App\Models\Category;
 use App\Models\Type;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Controllers\CloudinaryStorage;
 
 class KendaraanController extends Controller
 {

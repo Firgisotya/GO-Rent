@@ -8,6 +8,7 @@ use App\Models\OrderDetail;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreOrderDetailRequest;
 use App\Http\Requests\UpdateOrderDetailRequest;
+use App\Http\Controllers\CloudinaryStorage;
 
 class OrderDetailController extends Controller
 {
