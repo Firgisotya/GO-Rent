@@ -81,7 +81,7 @@
                                         <td>{{ $order -> tanggal_sewa }}</td>
                                         <td>
                                             @if(!empty($order-> bukti_pembayaran))
-                                            <img src="{{ asset('storage/'.$order -> bukti_pembayaran) }}" alt=""
+                                            <img src="{{ $order -> bukti_pembayaran }}" alt=""
                                                 width="100px">
                                             @endif
                                         <td>
