@@ -40,10 +40,10 @@ class checkoutController extends Controller
             'bank_id' => 'required',
         ]);
         if ($request->file('berkas')) {
-            $validateData['image'] = cloudinary()->upload($request->file('image')->getRealPath())->getSecurePath();
+            $validateData['berkas'] = CloudinaryStorage::upload($request->file('berkas')->getRealPath(), $request->file('berkas')->getClientOriginalName());
         }
         if ($request->file('bukti_pembayaran')) {
-            $validateData['bukti_pembayaran'] = cloudinary()->upload($request->file('bukti_pembayaran')->getRealPath())->getSecurePath();
+            $validateData['bukti_pembayaran'] = CloudinaryStorage::upload($request->file('bukti_pembayaran')->getRealPath(), $request->file('bukti_pembayaran')->getClientOriginalName());
         }
 
         $ubahStock = 0;

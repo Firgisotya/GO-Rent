@@ -136,10 +136,10 @@ class OrderDetailController extends Controller
 
         // dd($validateData);
         if ($request->file('berkas')) {
-            $validateData['berkas'] = $request->file('berkas')->store('berkas', 'public');
+            $validateData['berkas'] = CloudinaryStorage::upload($request->file('berkas')->getRealPath(), $request->file('berkas')->getClientOriginalName());
         }
         if ($request->file('bukti_pembayaran')) {
-            $validateData['bukti_pembayaran'] = cloudinary()->upload($request->file('bukti_pembayaran')->getRealPath())->getSecurePath();
+            $validateData['bukti_pembayaran'] = CloudinaryStorage::upload($request->file('bukti_pembayaran')->getRealPath(), $request->file('bukti_pembayaran')->getClientOriginalName());
         }
         $order->status = 1;
         // dd($validateData);

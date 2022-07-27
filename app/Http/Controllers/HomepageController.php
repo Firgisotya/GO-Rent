@@ -199,7 +199,7 @@ class HomepageController extends Controller
             if ($request->oldImage) {
                 Storage::delete('public/' . $request->oldImage);
             }
-            $validateData['image'] = cloudinary()->upload($request->file('image')->getRealPath())->getSecurePath();
+            $validateData['image'] = CloudinaryStorage::upload($request->file('image')->getRealPath(), $request->file('image')->getClientOriginalName());
         }
         User::where('id', Auth::user()->id)->update($validateData);
         return redirect('/profile')->with('success', 'Data berhasil diubah');

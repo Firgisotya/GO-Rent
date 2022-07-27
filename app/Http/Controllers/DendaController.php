@@ -54,7 +54,7 @@ class DendaController extends Controller
             'bank_id' => 'required'
         ]);
         if ($request->file('bukti_pembayaran')) {
-            $validateData['bukti_pembayaran'] = cloudinary()->upload($request->file('bukti_pembayaran')->getRealPath())->getSecurePath();
+            $validateData['bukti_pembayaran'] = CloudinaryStorage::upload($request->file('bukti_pembayaran')->getRealPath(), $request->file('bukti_pembayaran')->getClientOriginalName());
         }
         $validateData['user_id'] = Auth::user()->id;
         $validateData['order_detail_id'] = $orderDetail->id;

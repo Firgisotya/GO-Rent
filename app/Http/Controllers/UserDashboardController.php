@@ -55,7 +55,7 @@ class UserDashboardController extends Controller
         ]);
 
         if ($request->file('image')) {
-            $validateData['image'] = cloudinary()->upload($request->file('image')->getRealPath())->getSecurePath();
+            $validateData['image'] = CloudinaryStorage::upload($request->file('image')->getRealPath(), $request->file('image')->getClientOriginalName());
         }
         $validatedData['password'] = bcrypt($validatedData['password']);
 
@@ -117,7 +117,8 @@ class UserDashboardController extends Controller
             if ($request->oldImage) {
                 Storage::delete($request->oldImage);
             }
-            $validateData['image'] = $request->file('image')->store('profile', 'public');
+            $validateData['image'] = CloudinaryStorage::replace($request->file('image'), $request->file('image')->getRealPath(), $request->file('image')->getClientOriginalName());
+            
             // $validateData['image'] = $request->file('image')->store('user', 'public');
         }
         User::where('id', $user->id)->update($validateData);
