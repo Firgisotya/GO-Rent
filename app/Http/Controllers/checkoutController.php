@@ -45,6 +45,7 @@ class checkoutController extends Controller
         }
         if ($request->file('bukti_pembayaran')) {
             $validateData['bukti_pembayaran'] = CloudinaryStorage::upload($request->file('bukti_pembayaran')->getRealPath(), $request->file('bukti_pembayaran')->getClientOriginalName());
+            
         }
 
         $ubahStock = 0;
