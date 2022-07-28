@@ -29,21 +29,20 @@
             <div class="row">
                 <div class="col-lg-3 col-sm-12 text-center pt-3">
                     <img src="@if ($user -> image)
-                        {{ asset('storage/'.$user -> image) }}
+                        {{ $user -> image }}
                         @elseif($user -> gender == 'Perempuan')
                         {{ asset('img/woman.png') }}
                         @elseif($user -> gender == 'Laki-laki')
                         {{ asset('img/man.png') }}
                         @else
                         {{ asset('img/user.png') }}
-                    @endif" alt="" width="250px" class="rounded-circle img-thumbnail mb-3">
+                    @endif" alt="" width="250px" class="rounded-circle img-thumbnail mb-3 img-fluid">
                     <h4 id="username">{{ $user -> username }}</h4>
-                    <form method="POST" enctype="multipart/form-data">
+                    <form action="/profile" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="mb-3 text-start d-none" id="update">
                             <label for="formFile" class="form-label">Update Foto</label>
-                            <input class="form-control" value="{{ $user -> image }}" type="file" id="formFile"
-                                name="image">
+                            <input class="form-control" type="file" id="formFile" name="image">
                             <input type="hidden" name="oldImage" value="{{ $user -> image }}">
                         </div>
                 </div>

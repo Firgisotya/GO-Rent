@@ -277,25 +277,25 @@
                         </ul>
                         <div class="tab-content pt-2">
 
+
+
+                            <div class="tab-pane active fade show  profile-edit pt-3" id="profile-edit"
+                                style="height: 400px">
+                                <h6>Bukti Pembayaran Sewa</h6>
+                                <img src="{{ $orderDetails -> bukti_pembayaran }}" alt="" height="300px">
+                            </div>
                             @if ($orderDetails -> opsi == 1)
-                            <div class="tab-pane fade show active profile-overview" id="profile-overview"
+                            <div class="tab-pane fade show profile-overview" id="profile-overview"
                                 style="height: 400px">
                                 <h6>Berkas Jaminan Persewaan</h6>
-                                <img src="{{ asset('storage/'.$orderDetails -> berkas) }}" alt="" height="300px">
+                                <img src="{{ $orderDetails -> berkas }}" alt="" height="300px">
                             </div>
                             @endif
-
-                            <div class="tab-pane fade show  profile-edit pt-3" id="profile-edit" style="height: 400px">
-                                <h6>Bukti Pembayaran Sewa</h6>
-                                <img src="{{ asset('storage/'.$orderDetails -> bukti_pembayaran) }}" alt=""
-                                    height="300px">
-                            </div>
-
                             @if ($denda)
                             <div class="tab-pane fade pt-3" id="profile-change-password" style="height: 400px">
                                 <h6>Bukti Pembayaran Denda</h6>
                                 @if ($denda != null)
-                                <img src="{{ asset('storage/'.$denda -> bukti_pembayaran) }}" alt="" height="300px">
+                                <img src="{{ $denda -> bukti_pembayaran }}" alt="" height="300px">
                                 @else
                                 -
                                 @endif

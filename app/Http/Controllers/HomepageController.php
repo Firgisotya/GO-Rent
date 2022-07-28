@@ -270,7 +270,7 @@ class HomepageController extends Controller
         $order = OrderDetail::all();
         return view('export.template2', [
             'order' => $order,
-            'title' => 'kontol'
+            'title' => 'cek'
         ]);
     }
 }

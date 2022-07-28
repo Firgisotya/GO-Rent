@@ -45,13 +45,13 @@ class checkoutController extends Controller
         }
         if ($request->file('bukti_pembayaran')) {
             $validateData['bukti_pembayaran'] = CloudinaryStorage::upload($request->file('bukti_pembayaran')->getRealPath(), $request->file('bukti_pembayaran')->getClientOriginalName());
-            
         }
-
         $ubahStock = 0;
         Kendaraan::where('id', $kendaraan->id)->update(['stock' => $ubahStock]);
-
-        OrderDetail::where('order_id', $order->id)->update($validatedData);
+        OrderDetail::where('order_id', $order->id)->update([
+            'berkas' => $validateData['berkas'],
+            'bukti_pembayaran' => $validateData['bukti_pembayaran'],
+        ]);
         $orderr['status'] = $order->status = 1;
         Order::where('id', $order->id)->update($orderr);
         return redirect('/onProcess')->with('success', 'Pembayaran berhasil');

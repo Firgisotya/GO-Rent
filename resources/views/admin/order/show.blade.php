@@ -181,8 +181,7 @@
                                         <div id="collapse3One" class="collapse accordion__body show"
                                             aria-labelledby="accord-3One" data-bs-parent="#accordion-three">
                                             <div class="accordion-body-text">
-                                                <img src="{{ asset('storage/'.$orderDetail -> bukti_pembayaran) }}"
-                                                    alt="" height="300px">
+                                                <img src="{{ $orderDetail -> bukti_pembayaran }}" alt="" height="300px">
                                             </div>
                                         </div>
                                     </div>
@@ -197,8 +196,7 @@
                                         <div id="collapse3Two" class="collapse accordion__body"
                                             aria-labelledby="accord-3Two" data-bs-parent="#accordion-three">
                                             <div class="accordion-body-text">
-                                                <img src="{{ asset('storage/'.$orderDetail -> berkas) }}" alt=""
-                                                    height="300px">
+                                                <img src="{{ $orderDetail -> berkas }}" alt="" height="300px">
                                             </div>
                                         </div>
                                     </div>
