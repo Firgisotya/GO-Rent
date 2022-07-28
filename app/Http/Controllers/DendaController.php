@@ -60,6 +60,8 @@ class DendaController extends Controller
         $validateData['user_id'] = Auth::user()->id;
         $validateData['order_detail_id'] = $orderDetail->id;
 
+        
+
         Denda::create($validateData);
 
         $denda = Denda::where('order_detail_id', $order->id)->first();
