@@ -19,6 +19,7 @@ use App\Models\PengembalianDetail;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\CloudinaryStorage;
+use App\Models\Kyc;
 
 class HomepageController extends Controller
 {
@@ -153,10 +154,12 @@ class HomepageController extends Controller
     }
     public function profile()
     {
+        $kyc = Kyc::where('user_id', auth()->user()->id)->first();
         $user = User::find(Auth::user()->id);
         return view('homepage.profile', [
             'user' => $user,
             'title' => 'Profile',
+            'kyc' => $kyc,
 
         ]);
     }
@@ -196,12 +199,25 @@ class HomepageController extends Controller
             'image' => 'image|file',
             'gender' => 'required'
         ]);
+        $kyc = $request->validate([
+            'nama_lengkap' => 'required',
+            'nik' => 'required|numeric|digits:16',
+            'ktp' => 'image|file'
+        ]);
         if ($request->file('image')) {
             if ($request->oldImage) {
                 Storage::delete('public/' . $request->oldImage);
             }
             $validateData['image'] = CloudinaryStorage::upload($request->file('image')->getRealPath(), $request->file('image')->getClientOriginalName());
         }
+        if ($request->file('ktp')) {
+            if ($request->oldImage) {
+                Storage::delete('public/' . $request->oldImage);
+            }
+            $kyc['ktp'] = CloudinaryStorage::upload($request->file('ktp')->getRealPath(), $request->file('ktp')->getClientOriginalName());
+        }
+        $kyc['user_id'] = $user->id;
+        Kyc::updateOrCreate(['user_id' => $user->id], $kyc);
         User::where('id', Auth::user()->id)->update($validateData);
         return redirect('/profile')->with('success', 'Data berhasil diubah');
     }

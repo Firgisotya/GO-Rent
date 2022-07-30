@@ -59,11 +59,15 @@
                                                 <label class="form-check-label" for="customCheckBox2"></label>
                                             </div>
                                         </td>
-                                        <td><img class="rounded-circle" src="@if (!$user -> image)
-                                            {{ asset('img/user/'.$user -> id.'.png') }}
-                                            @else
-                                            {{asset('storage/'.$user->image)}}
-                                          @endif" width="100px" height="100px"></td>
+                                        <td><img class="rounded-circle" src="@if ($user -> image)
+                        {{ $user -> image }}
+                        @elseif($user -> gender == 'Perempuan')
+                        {{ asset('img/woman.png') }}
+                        @elseif($user -> gender == 'Laki-Laki')
+                        {{ asset('img/man.png') }}
+                        @else
+                        {{ asset('img/user.png') }}
+                    @endif" width="100px" height="100px"></td>
                                         <td>{{ $user->name }}</td>
                                         <td>{{ $user->email }}</td>
                                         <td>{{ $user->gender }}</td>
@@ -88,8 +92,8 @@
                                                         href="/dashboard/user/{{$user->id}}">Show</a>
                                                     <a class="dropdown-item"
                                                         href="/dashboard/user/{{$user->id}}/edit">Edit</a>
-                                                    <form action="/dashboard/user/{{ $user->id }}"
-                                                        method="POST" class="d-inline">
+                                                    <form action="/dashboard/user/{{ $user->id }}" method="POST"
+                                                        class="d-inline">
                                                         @method('delete')
                                                         @csrf
                                                         <button class="dropdown-item"

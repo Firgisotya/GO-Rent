@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained();
             $table->string('nama_lengkap')->nullable();
-            $table->bigInteger('NIK')->nullable();
+            $table->bigInteger('nik')->nullable();
             $table->string('ktp')->nullable();
             $table->timestamps();
         });
