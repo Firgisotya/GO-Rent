@@ -37,6 +37,7 @@ class HomepageController extends Controller
         $main = Order::where('user_id', Auth::user()->id)->where('status', 0)->first();
         $dengan_sopir = $kendaraan->harga + 50000;
         $sopir_bbm = $kendaraan->harga + 100000;
+        $kyc = Kyc::where('user_id', Auth::user()->id)->first();
 
         $orderDetails = OrderDetail::where('kendaraan_id', $kendaraan->id)->first();
         return view('homepage.details', [
@@ -46,6 +47,7 @@ class HomepageController extends Controller
             'dengan_sopir' => $dengan_sopir,
             'sopir_bbm' => $sopir_bbm,
             'orderDetails' => $orderDetails,
+            'kyc' => $kyc,
         ]);
     }
     public function service()

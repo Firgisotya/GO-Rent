@@ -203,9 +203,10 @@
                             dahulu!</strong></span>
                     @endguest
 
-                    <div class="btn-modal text-end" style="padding-right: 7em">
+                    <div class="btn-modal text-center mb-3" style="">
                         <button type="button" class="btn btn-primary w-75 " data-bs-toggle="modal"
-                            data-bs-target="#staticBackdrop" @guest disabled @endguest @if ($kendaraan -> stock == 0)
+                            data-bs-target="#staticBackdrop" @guest disabled @endguest @if ($kendaraan -> stock == 0 ||
+                            !$kyc)
                             disabled
                             @endif>
                             Lanjut Pemesanan <i class="fas fa-credit-card"></i>
@@ -214,6 +215,10 @@
                     @if ($kendaraan -> stock == 0)
                     <span class="text-danger text-start"><strong class="fst-italic">*Maaf kendaraan yang anda pilih
                             tidak tersedia</strong></span>
+                    @endif
+                    @if (!$kyc)
+                    <span class="text-danger text-start"><strong class="fst-italic">*Mohon lengkapi <a
+                                href="/profile">data personal</a> anda terlebih dahulu</strong></span>
                     @endif
                 </div>
             </div>

@@ -54,7 +54,7 @@
                             {{ asset('storage/'.auth()->user()->image) }}
                             @elseif(auth()->user()->gender == 'Perempuan')
                             {{ asset('img/woman.png') }}
-                            @elseif(auth()->user()->gender == 'Laki-laki')
+                            @elseif(auth()->user()->gender == 'Laki-Laki')
                             {{ asset('img/man.png') }}
                             @else
                             {{ asset('img/user.png') }}

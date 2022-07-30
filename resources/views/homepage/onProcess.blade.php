@@ -66,11 +66,7 @@
                                         {{ $loop -> iteration }}
                                     </td>
                                     <td>
-                                        <img src="@if (!$item -> kendaraan -> image)
-                                                                                                                    {{ asset('img/kendaraan/'.$item -> kendaraan -> slug.'.png') }}
-                                                                                                                    @else
-                                                                                                                    {{asset('storage/'.$item -> kendaraan->image)}}
-                                                                                                                  @endif"
+                                        <img src="@if (!$item -> kendaraan -> image)                                                                                                               {{ asset('img/kendaraan/'.$item -> kendaraan -> slug.'.png') }}                                                                                                            @else                                                                                                     {{asset('storage/'.$item -> kendaraan->image)}}                                                @endif"
                                             alt="" width="200px">
                                     </td>
                                     <td>{{ $item -> kendaraan -> nama }}</td>
