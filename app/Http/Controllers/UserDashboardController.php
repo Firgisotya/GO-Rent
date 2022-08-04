@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\CloudinaryStorage;
+use App\Models\Kyc;
 
 class UserDashboardController extends Controller
 {
@@ -72,9 +73,11 @@ class UserDashboardController extends Controller
      */
     public function show($id)
     {
+        $kyc = Kyc::where('user_id', auth()->user()->id)->first();
         return view('admin.user.show', [
             'user' => User::find($id),
             'title' => 'User',
+            'kyc' => $kyc,
         ]);
     }
 
@@ -119,7 +122,7 @@ class UserDashboardController extends Controller
                 Storage::delete($request->oldImage);
             }
             $validateData['image'] = CloudinaryStorage::replace($request->file('image'), $request->file('image')->getRealPath(), $request->file('image')->getClientOriginalName());
-            
+
             // $validateData['image'] = $request->file('image')->store('user', 'public');
         }
         User::where('id', $user->id)->update($validateData);
